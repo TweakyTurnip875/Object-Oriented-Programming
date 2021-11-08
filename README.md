@@ -1,5 +1,5 @@
-Name: John Doe
-School: Programming School
+* Name: John Doe
+* School: Programming School
 
 This is for school assignments using github.
 
