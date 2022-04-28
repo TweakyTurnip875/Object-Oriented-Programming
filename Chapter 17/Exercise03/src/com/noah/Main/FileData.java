@@ -1,11 +1,8 @@
 package com.noah.Main;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
 public class FileData {
@@ -21,23 +18,53 @@ public class FileData {
 		
 		validateLocation();
 	}
+	/* (make sure the file location is valid)
+	 * 
+	 *  if the last character in the file location isn't a forward slash, then,
+	 *  add forward slash to the end of the file location
+	 */
 	private void validateLocation() {
 		if(location.charAt(location.length() - 1) != '/'){
 			location = location.concat("/");
 		}
 	}
 	
+	// creates a placeholder .dat file
 	public void createDataFile() throws IOException {
+		String fileInfo = ""; // readable file info (location, name, etc.)
+		
+		// if location is provided, add it to the end of fileInfo
 		if(location != null) {
-			fileName = location.concat(fileName);
+			fileInfo = location.concat(fileInfo);
 		}
-		File f = new File(fileName);
+		fileInfo += fileName; // add file name to the end of fileInfo
 		
-		DataOutputStream out = new DataOutputStream(new FileOutputStream(f));
+		File f = new File(fileInfo);
 		
+		// if file already exists, write to data file, otherwise, create the file
 		if(f.exists()) {
+			DataOutputStream out = new DataOutputStream(new FileOutputStream(f));
 			
-			out.writeInt(56);
-		} 
+			for(int i = 0; i < 100; i++) {
+				out.writeDouble((int)(Math.random() * 20));
+			}
+		} else {
+			f.createNewFile();
+		}
+	}
+	
+	// getters and setters
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
 	}
 }
