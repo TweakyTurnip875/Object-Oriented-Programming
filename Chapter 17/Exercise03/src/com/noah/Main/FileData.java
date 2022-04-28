@@ -48,8 +48,10 @@ public class FileData {
 			for(int i = 0; i < 100; i++) {
 				out.writeDouble((int)(Math.random() * 20));
 			}
+			System.out.println("File written to at: " + f.getAbsolutePath());
 		} else {
 			f.createNewFile();
+			System.out.println("File created at: " + f.getAbsolutePath());
 		}
 	}
 	
