@@ -1,5 +1,12 @@
 package com.noah.Main;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Main {
-	
+	public static void main(String[] args) throws IOException {
+		FileData fd = new FileData("test.dat");
+		
+		fd.createDataFile();
+	}
 }
