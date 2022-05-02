@@ -21,19 +21,19 @@ public class Main {
 		System.out.print("Enter input file name: ");
 		String inFileName = userInputStream.next();
 		
-		createFile(inFileName);
+		File inF = new File(inFileName + ".dat");
+		createFile(inF);
 		
 		System.out.print("Enter output file name: ");
 		String outFileName = userInputStream.next();
 		
-		File of = new File(outFileName + ".dat");
-		of.createNewFile();
-		
+		File outF = new File(outFileName + ".dat");
+		encryptData(inF, outF);
 	}
-	public static void createFile(String name) throws FileNotFoundException {
+	public static void createFile(File name) throws FileNotFoundException {
 		try (
 			DataOutputStream out = new DataOutputStream(
-			new FileOutputStream(name + ".dat"));
+			new FileOutputStream(name));
 		) {
 			out.writeDouble((int)(Math.random() * 100));
 			out.writeDouble((int)(Math.random() * 100));
@@ -42,7 +42,7 @@ public class Main {
 			System.out.println(ex);
 		}
 	}
-	public static void encryptData() {
+	public static void encryptData(File encryptFile, File dataFile) {
 		
 	}
 }
