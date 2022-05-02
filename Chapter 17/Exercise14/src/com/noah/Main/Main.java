@@ -28,7 +28,20 @@ public class Main {
 		File outputFile = new File(outFileName);
 		
 	}
-
+	public static void createFile(String name) throws FileNotFoundException {
+		try (
+			DataOutputStream out = new DataOutputStream(
+			new FileOutputStream(name + ".dat"));
+		) {
+			out.writeInt(32);
+			out.writeInt(56);
+			out.writeInt(12);
+			
+			System.out.println("file created");
+		} catch(IOException ex) {
+			System.out.println(ex);
+		}
+	}
 	public static void encryptData() {
 		
 	}
