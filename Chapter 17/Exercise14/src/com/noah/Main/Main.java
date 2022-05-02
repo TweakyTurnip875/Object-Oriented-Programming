@@ -35,9 +35,9 @@ public class Main {
 			DataOutputStream out = new DataOutputStream(
 			new FileOutputStream(name + ".dat"));
 		) {
-			out.writeDouble((int)Math.random() * 100);
-			out.writeDouble((int)Math.random() * 100);
-			out.writeDouble((int)Math.random() * 100);
+			out.writeDouble((int)(Math.random() * 100));
+			out.writeDouble((int)(Math.random() * 100));
+			out.writeDouble((int)(Math.random() * 100));
 		} catch(IOException ex) {
 			System.out.println(ex);
 		}
