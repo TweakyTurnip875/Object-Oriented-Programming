@@ -35,11 +35,9 @@ public class Main {
 			DataOutputStream out = new DataOutputStream(
 			new FileOutputStream(name + ".dat"));
 		) {
-			out.writeInt(32);
-			out.writeInt(56);
-			out.writeInt(12);
-			
-			System.out.println("file created");
+			out.writeDouble((int)Math.random() * 100);
+			out.writeDouble((int)Math.random() * 100);
+			out.writeDouble((int)Math.random() * 100);
 		} catch(IOException ex) {
 			System.out.println(ex);
 		}
