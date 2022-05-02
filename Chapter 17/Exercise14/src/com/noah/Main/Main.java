@@ -12,10 +12,10 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		prompt();
 	}
-	public static void prompt() {
+	public static void prompt() throws IOException {
 		Scanner userInputStream = new Scanner(System.in);
 		
 		System.out.print("Enter input file name: ");
@@ -24,8 +24,8 @@ public class Main {
 		System.out.print("Enter output file name: ");
 		String outFileName = userInputStream.next();
 		
-		File inputFile = new File(inFileName);
-		File outputFile = new File(outFileName);
+		File of = new File(outFileName + ".dat");
+		of.createNewFile();
 		
 	}
 	public static void createFile(String name) throws FileNotFoundException {
