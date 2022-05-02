@@ -21,6 +21,8 @@ public class Main {
 		System.out.print("Enter input file name: ");
 		String inFileName = userInputStream.next();
 		
+		createFile(inFileName);
+		
 		System.out.print("Enter output file name: ");
 		String outFileName = userInputStream.next();
 		
