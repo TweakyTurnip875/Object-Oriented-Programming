@@ -14,23 +14,10 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) throws IOException {
-		prompt();
+		encryptPrompt();
 	}
-	public static void prompt() throws IOException {
-		Scanner userInputStream = new Scanner(System.in);
-		
-		System.out.print("Enter input file name: ");
-		String inFileName = userInputStream.next();
-		
-		File inF = new File(inFileName + ".dat");
-		createFile(inF);
-		
-		System.out.print("Enter output file name: ");
-		String outFileName = userInputStream.next();
-		
-		File outF = new File(outFileName + ".dat");
-		encryptData(inF, outF);
-	}
+	
+	// write randomly generated data to a File object.
 	public static void createFile(File name) throws FileNotFoundException {
 		try (
 			DataOutputStream out = new DataOutputStream(
@@ -43,18 +30,41 @@ public class Main {
 			System.out.println(ex);
 		}
 	}
+	// Reads from inFile object, encrypts data, and writes encrypted data to outFile object
 	public static void encryptData(File inFile, File outFile) throws IOException {
-		
 		try(
 			DataInputStream in = new DataInputStream(new FileInputStream(inFile));
 			DataOutputStream out = new DataOutputStream(new FileOutputStream(outFile));
 		) {
+			// runs until an EOFException is reached in catch
 			while(true) {
-				out.writeDouble(in.readDouble() + 5);
+				out.writeDouble(in.readDouble() + 5); // encrypts data by adding 5 to every byte of inFile and writing to outFile
 			}
 		} catch(EOFException ex) {
-			System.out.println("End of file reached");
+			System.out.println("--- File encrypted ---");
 		}
 		
+	}
+	
+	//prompt user to enter a template filename with non encrypted data and an output file with encrypted input file data
+	public static void encryptPrompt() throws IOException {
+		Scanner userInputStream = new Scanner(System.in);
+		
+		System.out.print("Enter input file name: ");
+		String inFileName = userInputStream.next();
+		
+		// create input file object with users input.
+		// file extension added to the end in case user doesn't include the correct extension.
+		File inF = new File(inFileName + ".dat");
+		
+		createFile(inF); // call createFile to write template data to input file
+		
+		System.out.print("Enter output file name: ");
+		String outFileName = userInputStream.next();
+		
+		// same process as the input file creation for output file
+		File outF = new File(outFileName + ".dat");
+		
+		encryptData(inF, outF);
 	}
 }
