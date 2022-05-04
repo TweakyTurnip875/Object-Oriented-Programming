@@ -21,9 +21,13 @@ public class Main {
 			DataInputStream in = new DataInputStream(new FileInputStream(inFile));
 			DataOutputStream out = new DataOutputStream(new FileOutputStream(outFile));
 		) {
-				
+			
+			while(true) {
+				out.writeDouble(in.readDouble() - 5);
+			}
+			
 		} catch(EOFException ex) {
-				
+			System.out.println("--- File Decrypted ---");
 		}
 	}
 	
