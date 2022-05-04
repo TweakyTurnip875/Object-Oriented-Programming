@@ -2,6 +2,7 @@ package com.noah.Main;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -42,7 +43,18 @@ public class Main {
 			System.out.println(ex);
 		}
 	}
-	public static void encryptData(File encryptFile, File dataFile) {
+	public static void encryptData(File inFile, File outFile) throws IOException {
+		
+		try(
+			DataInputStream in = new DataInputStream(new FileInputStream(inFile));
+			DataOutputStream out = new DataOutputStream(new FileOutputStream(outFile));
+		) {
+			while(true) {
+				out.writeDouble(in.readDouble() + 5);
+			}
+		} catch(EOFException ex) {
+			System.out.println("End of file reached");
+		}
 		
 	}
 }
