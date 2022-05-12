@@ -17,9 +17,11 @@ import javafx.stage.Stage;
 public class SierpinskiTriangle extends Application {
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {
-	SierpinskiTrianglePane trianglePane = new SierpinskiTrianglePane(); 
+	SierpinskiTrianglePane trianglePane = new SierpinskiTrianglePane();
 
     Button sub = new Button("-"), add = new Button("+");
+    sub.setOnAction(e -> handleAddSub(0, trianglePane));
+    add.setOnAction(e -> handleAddSub(1, trianglePane));
     
     HBox hBox = new HBox(10);
     hBox.getChildren().addAll(sub, add);
@@ -39,17 +41,13 @@ public class SierpinskiTriangle extends Application {
     scene.heightProperty().addListener(ov -> trianglePane.paint());
   }
   
-  // adds or subtracts from o based on m (0 = sub, 1 = add)
-  public int handleAddSub(int m, int o) {
-	  int res = o;
-
-	  if(m == 0 && o > 0) {
-		res--;  
+  // adds or subtracts from order based on m (0 = sub, 1 = add)
+  public void handleAddSub(int m, SierpinskiTrianglePane p) {
+	  if(m == 0 && p.getOrder() > 0) {
+		  p.setOrder(p.getOrder() - 1); 
 	  } else if(m == 1) {
-		res++;
+		  p.setOrder(p.getOrder() + 1); 
 	  }
-	  
-	  return res;
   }
 
   /**
