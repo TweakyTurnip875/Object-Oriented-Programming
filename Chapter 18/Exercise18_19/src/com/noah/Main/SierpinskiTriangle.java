@@ -16,8 +16,9 @@ import javafx.stage.Stage;
 
 public class SierpinskiTriangle extends Application {
   @Override // Override the start method in the Application class
-  public void start(Stage primaryStage) {       
-    SierpinskiTrianglePane trianglePane = new SierpinskiTrianglePane(); 
+  public void start(Stage primaryStage) {
+	SierpinskiTrianglePane trianglePane = new SierpinskiTrianglePane(); 
+
     Button sub = new Button("-"), add = new Button("+");
     
     HBox hBox = new HBox(10);
@@ -38,6 +39,19 @@ public class SierpinskiTriangle extends Application {
     scene.heightProperty().addListener(ov -> trianglePane.paint());
   }
   
+  // adds or subtracts from o based on m (0 = sub, 1 = add)
+  public int handleAddSub(int m, int o) {
+	  int res = o;
+
+	  if(m == 0 && o > 0) {
+		res--;  
+	  } else if(m == 1) {
+		res++;
+	  }
+	  
+	  return res;
+  }
+
   /**
    * The main method is only needed for the IDE with limited
    * JavaFX support. Not needed for running from the command line.
