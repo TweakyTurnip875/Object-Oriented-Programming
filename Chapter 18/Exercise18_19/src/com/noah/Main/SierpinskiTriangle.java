@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -17,15 +18,10 @@ public class SierpinskiTriangle extends Application {
   @Override // Override the start method in the Application class
   public void start(Stage primaryStage) {       
     SierpinskiTrianglePane trianglePane = new SierpinskiTrianglePane(); 
-    TextField tfOrder = new TextField(); 
-    tfOrder.setOnAction(
-      e -> trianglePane.setOrder(Integer.parseInt(tfOrder.getText())));
-    tfOrder.setPrefColumnCount(4);
-    tfOrder.setAlignment(Pos.BOTTOM_RIGHT);
-
-    // Pane to hold label, text field, and a button
+    Button sub = new Button("-"), add = new Button("+");
+    
     HBox hBox = new HBox(10);
-    hBox.getChildren().addAll(new Label("Enter an order: "), tfOrder);
+    hBox.getChildren().addAll(sub, add);
     hBox.setAlignment(Pos.CENTER);
     
     BorderPane borderPane = new BorderPane();
