@@ -13,6 +13,10 @@ public class SierpinskiTrianglePane extends Pane {
       this.order = order;
       paint();
     }
+    
+    public int getOrder() {
+    	return order;
+    }
 
     SierpinskiTrianglePane() {
     }
